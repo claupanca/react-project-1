@@ -1,0 +1,101 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  font-family: sans-serif;
+}
+
+.container {
+  max-width: 60rem;
+  height: auto;
+  /* aspect-ratio: 2/1.3; */
+  margin: 2rem auto;
+  position: relative;
+}
+
+.img_slider {
+  display: flex;
+  overflow: hidden;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  transition: translate 0.5s;
+}
+
+.img_slider_btn:hover {
+  background-color: #33333393;
+}
+
+.img_slider_btn:hover > * {
+  animation: squish 200ms ease-in-out;
+}
+
+.img_slider_prev {
+  all: unset;
+  width: 4rem;
+  text-align: center;
+  font-size: 3rem;
+  color: white;
+  transition: all 0.5s;
+  cursor: pointer;
+
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.img_slider_next {
+  all: unset;
+  width: 4rem;
+  text-align: center;
+  font-size: 3rem;
+  color: white;
+  transition: all 0.5s;
+  cursor: pointer;
+
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.img_slider_dots {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: pointer;
+
+  display: flex;
+  gap: 0.5rem;
+  /* align-items: center; */
+}
+
+.img_slider_dot {
+  all: unset;
+}
+
+.img_slider_dot > * {
+  stroke: black;
+  fill: white;
+}
+
+.img_slider_dot > *:hover {
+  /* all: unset; */
+  /* stroke: white; */
+  fill: black;
+}
+
+/* This is an animation created by us */
+@keyframes squish {
+  50% {
+    scale: 1.4 0.6;
+  }
+}
