@@ -10,7 +10,14 @@ import car_6 from "./assets/car_6.jpg";
 
 function App() {
   // console.log(images[0]);
-  return <ImageSlider images={images} />;
+  return (
+    <div>
+      <ImageSlider images={images} />
+      <a href="/" style={{ fontSize: "3rem" }}>
+        LINK
+      </a>
+    </div>
+  );
 }
 // const image = require("./assets/car_1.jpg");
 const images = [car_1, car_2, car_3, car_4, car_5, car_6];

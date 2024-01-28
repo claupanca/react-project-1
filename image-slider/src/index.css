@@ -25,15 +25,11 @@ html {
 img {
   width: 100%;
   height: 100%;
-  transition: translate 0.5s;
 }
 
-.img_slider_btn:hover {
+.img_slider_btn:hover,
+.img_slider_btn:focus-visible {
   background-color: #33333393;
-}
-
-.img_slider_btn:hover > * {
-  animation: squish 200ms ease-in-out;
 }
 
 .img_slider_prev {
@@ -68,7 +64,7 @@ img {
 
 .img_slider_dots {
   position: absolute;
-  bottom: 0;
+  bottom: 0.5rem;
   left: 50%;
   transform: translateX(-50%);
   cursor: pointer;
@@ -85,17 +81,68 @@ img {
 .img_slider_dot > * {
   stroke: black;
   fill: white;
+  transition: scale 0.2s ease-in;
 }
 
-.img_slider_dot > *:hover {
+.img_slider_dot > *:hover,
+.img_slider_dot > *:focus-visible {
   /* all: unset; */
-  /* stroke: white; */
+  stroke: white;
   fill: black;
+  stroke-width: 3rem;
+  scale: 2;
 }
 
 /* This is an animation created by us */
 @keyframes squish {
   50% {
     scale: 1.4 0.6;
+  }
+}
+
+/* We are adding an OUTLINE when the focus is on the element, for ACCESIBILITY reasons */
+/* These will be applied only when we are using the TAB key to move around */
+.img_slider_btn:focus-visible,
+.img_slider_dot > *:focus-visible {
+  outline: auto;
+}
+
+/* This is for the Skip Image Slider Controls 
+- we are hiding this to be visible only to the SCREEN READERS
+- this will move the focus to the lower div and then using TAB we can go to the next LINK*/
+.skip_link {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+
+/*  we are making this visible only when USING TAB */
+.skip_link:focus-visible {
+  top: 0;
+  left: 0;
+  border: 1px solid black;
+  background-color: white;
+  width: auto;
+  height: auto;
+  padding: 0.5rem;
+  clip: unset;
+  text-decoration: none;
+  color: black;
+  z-index: 2;
+}
+
+/* There are people who do not want animations, so we can specify this */
+/* we need to specify here what animation we do not want to be rendered */
+/* For this, we move here the WHOLE TRANSITION style for the element */
+@media not (prefers-reduce-motion) {
+  img {
+    transition: translate 0.5s;
+  }
+
+  .img_slider_btn:hover > *,
+  .img_slider_btn:focus-visible > * {
+    animation: squish 200ms ease-in-out;
   }
 }
